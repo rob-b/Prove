@@ -1,0 +1,3 @@
+Some assertions for testing django apps. Written with nose in mind.
+prove.default is based on assertions bundled with django, prove.extensions is
+based on Gareth Rushgrove's django-test-extensions
