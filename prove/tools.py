@@ -1,7 +1,23 @@
-from textwrap import wrap
+import re
 
-def assert_response_contains(fragment, response):
-    "assert that a response contains a given string"
-    assert fragment in response.content, wrap("""
-        Response should contain '%s' but doesn't:\n%s
-        """ % (fragment, response.content))
+def to_list(value):
+    if value is None:
+        value = []
+    elif not isinstance(value, list):
+        value = [value]
+    return value
+
+def inline(message):
+    return re.sub('\s+', ' ', message)
+
+def ok_(exp, message=None):
+    assert exp, message
+
+def eq_(a, b, message=None):
+    if message is None:
+        message = '%r != %r' % (a, b)
+    assert a == b, message
+
+def fail(message):
+    raise AssertionError(message)
+
